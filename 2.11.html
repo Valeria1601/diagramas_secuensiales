@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>2.11 - Pago por consumo de energía eléctrica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 90%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #0059b3;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pago por consumo de energía eléctrica</h1>
+    <label for="consumoKW">Consumo en kilowatts (KW):</label><br>
+    <input type="number" id="consumoKW" placeholder="Ej. 350" min="0" step="0.01"><br>
+    <label for="precioKW">Precio por kilowatt ($):</label><br>
+    <input type="number" id="precioKW" placeholder="Ej. 2.5" min="0" step="0.01"><br>
+    <button onclick="calcularPago()">Calcular pago</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularPago() {
+      const consumo = parseFloat(document.getElementById('consumoKW').value);
+      const precio = parseFloat(document.getElementById('precioKW').value);
+
+      if (isNaN(consumo) || isNaN(precio) || consumo < 0 || precio < 0) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa valores válidos y no negativos.";
+        return;
+      }
+
+      const total = consumo * precio;
+      document.getElementById('resultado').innerText = `El pago total por consumo de energía es $${total.toFixed(2)}.`;
+    }
+  </script>
+</body>
+</html>

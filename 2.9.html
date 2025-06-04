@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>2.9 - Costo llamada telefónica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 90%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #0059b3;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Costo llamada telefónica</h1>
+    <label for="tiempo">Duración de la llamada (minutos):</label><br>
+    <input type="number" id="tiempo" placeholder="Ej. 10" min="0" step="0.01"><br>
+    <label for="costo">Costo por minuto ($):</label><br>
+    <input type="number" id="costo" placeholder="Ej. 2.5" min="0" step="0.01"><br>
+    <button onclick="calcularCosto()">Calcular costo</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularCosto() {
+      const tiempo = parseFloat(document.getElementById('tiempo').value);
+      const costo = parseFloat(document.getElementById('costo').value);
+
+      if (isNaN(tiempo) || isNaN(costo) || tiempo < 0 || costo < 0) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa valores válidos y no negativos.";
+        return;
+      }
+
+      const total = tiempo * costo;
+      document.getElementById('resultado').innerText = `El costo total de la llamada es $${total.toFixed(2)}.`;
+    }
+  </script>
+</body>
+</html>

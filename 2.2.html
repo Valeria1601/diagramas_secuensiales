@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>2.2 - Conversión a Dólares</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 90%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #0059b3;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Conversión de Pesos a Dólares</h1>
+    <label for="pesos">Cantidad en Pesos Mexicanos:</label><br>
+    <input type="number" id="pesos"><br>
+    <label for="tipoCambio">Tipo de Cambio (MXN a USD):</label><br>
+    <input type="number" id="tipoCambio" placeholder="Ej. 17.50"><br>
+    <button onclick="convertir()">Convertir</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function convertir() {
+      const pesos = parseFloat(document.getElementById('pesos').value);
+      const tipoCambio = parseFloat(document.getElementById('tipoCambio').value);
+      if (isNaN(pesos) || isNaN(tipoCambio) || tipoCambio <= 0) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa valores válidos.";
+        return;
+      }
+      const dolares = pesos / tipoCambio;
+      document.getElementById('resultado').innerText = `Puedes adquirir $${dolares.toFixed(2)} dólares.`;
+    }
+  </script>
+</body>
+</html>

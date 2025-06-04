@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>2.5 - Presupuesto Pintura</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 90%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #0059b3;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #003366;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Presupuesto para Pintura</h1>
+    <label for="m2">Metros cuadrados a pintar:</label><br>
+    <input type="number" id="m2" placeholder="Ej. 50" min="0" step="0.01"><br>
+    <label for="costoM2">Costo por metro cuadrado (MXN):</label><br>
+    <input type="number" id="costoM2" placeholder="Ej. 120" min="0" step="0.01"><br>
+    <button onclick="calcularPresupuesto()">Calcular presupuesto</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularPresupuesto() {
+      const m2 = parseFloat(document.getElementById('m2').value);
+      const costoM2 = parseFloat(document.getElementById('costoM2').value);
+
+      if (isNaN(m2) || isNaN(costoM2) || m2 <= 0 || costoM2 <= 0) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa valores válidos y positivos.";
+        return;
+      }
+
+      const total = m2 * costoM2;
+
+      document.getElementById('resultado').innerText = `Presupuesto total: $${total.toFixed(2)} MXN.`;
+    }
+  </script>
+</body>
+</html>

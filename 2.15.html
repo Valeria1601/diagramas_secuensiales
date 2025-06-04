@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>2.15 - Potencia eléctrica de un circuito</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 95%;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #0059b3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Potencia eléctrica de un circuito</h1>
+
+    <label for="voltaje">Voltaje (V):</label>
+    <input type="number" id="voltaje" min="0" step="any" placeholder="Ej. 220" />
+
+    <label for="corriente">Corriente (I):</label>
+    <input type="number" id="corriente" min="0" step="any" placeholder="Ej. 5" />
+
+    <label for="resistencia">Resistencia (R):</label>
+    <input type="number" id="resistencia" min="0" step="any" placeholder="Ej. 44" />
+
+    <button onclick="calcularPotencia()">Calcular potencia</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularPotencia() {
+      const V = parseFloat(document.getElementById('voltaje').value);
+      const I = parseFloat(document.getElementById('corriente').value);
+      const R = parseFloat(document.getElementById('resistencia').value);
+
+      if (isNaN(V) || V < 0 || isNaN(I) || I < 0 || isNaN(R) || R < 0) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa valores válidos y no negativos.";
+        return;
+      }
+
+      // P = V * I
+      const potencia1 = V * I;
+      // V = R * I, potencia alternativa P = R * I^2
+      const potencia2 = R * I * I;
+
+      const resultadoTexto = 
+        `Potencia calculada con P = V * I: ${potencia1.toFixed(2)} Watts\n` +
+        `Potencia calculada con P = R * I²: ${potencia2.toFixed(2)} Watts`;
+
+      document.getElementById('resultado').innerText = resultadoTexto;
+    }
+  </script>
+</body>
+</html>

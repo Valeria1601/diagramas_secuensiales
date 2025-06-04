@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>2.17 - Promedio ponderado de exámenes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 95%;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #0059b3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Promedio ponderado de exámenes</h1>
+
+    <label for="examen1">Calificación examen 1 (25%):</label>
+    <input type="number" id="examen1" min="0" max="100" step="any" placeholder="Ej. 85" />
+
+    <label for="examen2">Calificación examen 2 (25%):</label>
+    <input type="number" id="examen2" min="0" max="100" step="any" placeholder="Ej. 90" />
+
+    <label for="examen3">Calificación examen 3 (50%):</label>
+    <input type="number" id="examen3" min="0" max="100" step="any" placeholder="Ej. 95" />
+
+    <button onclick="calcularPromedio()">Calcular promedio</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularPromedio() {
+      const e1 = parseFloat(document.getElementById('examen1').value);
+      const e2 = parseFloat(document.getElementById('examen2').value);
+      const e3 = parseFloat(document.getElementById('examen3').value);
+
+      if (
+        isNaN(e1) || e1 < 0 || e1 > 100 ||
+        isNaN(e2) || e2 < 0 || e2 > 100 ||
+        isNaN(e3) || e3 < 0 || e3 > 100
+      ) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa calificaciones válidas entre 0 y 100.";
+        return;
+      }
+
+      const promedio = (e1 * 0.25) + (e2 * 0.25) + (e3 * 0.50);
+
+      document.getElementById('resultado').innerText = `El promedio ponderado es: ${promedio.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>

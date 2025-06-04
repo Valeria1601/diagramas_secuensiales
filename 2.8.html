@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>2.8 - Tiempo de viaje en bicicleta</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 90%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #0059b3;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tiempo de viaje en bicicleta</h1>
+    <label for="distancia">Distancia entre ciudades (km):</label><br>
+    <input type="number" id="distancia" placeholder="Ej. 30" min="0" step="0.01"><br>
+    <label for="velocidad">Velocidad constante (km/h):</label><br>
+    <input type="number" id="velocidad" placeholder="Ej. 15" min="0" step="0.01"><br>
+    <button onclick="calcularTiempo()">Calcular tiempo</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularTiempo() {
+      const distancia = parseFloat(document.getElementById('distancia').value);
+      const velocidad = parseFloat(document.getElementById('velocidad').value);
+
+      if (isNaN(distancia) || isNaN(velocidad) || distancia <= 0 || velocidad <= 0) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa valores válidos y positivos.";
+        return;
+      }
+
+      const tiempo = distancia / velocidad;
+
+      const horas = Math.floor(tiempo);
+      const minutos = Math.round((tiempo - horas) * 60);
+
+      document.getElementById('resultado').innerText = `El tiempo aproximado de viaje es ${horas} horas y ${minutos} minutos.`;
+    }
+  </script>
+</body>
+</html>

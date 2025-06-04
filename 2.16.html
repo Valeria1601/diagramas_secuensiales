@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>2.16 - Área de un cuadrado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 95%;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #0059b3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Área de un cuadrado</h1>
+
+    <label for="lado">Longitud del lado (m):</label>
+    <input type="number" id="lado" min="0" step="any" placeholder="Ej. 5" />
+
+    <button onclick="calcularArea()">Calcular área</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularArea() {
+      const lado = parseFloat(document.getElementById('lado').value);
+
+      if (isNaN(lado) || lado < 0) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa un valor válido y no negativo.";
+        return;
+      }
+
+      const area = lado * lado;
+
+      document.getElementById('resultado').innerText = `El área del cuadrado es: ${area.toFixed(2)} metros cuadrados.`;
+    }
+  </script>
+</body>
+</html>

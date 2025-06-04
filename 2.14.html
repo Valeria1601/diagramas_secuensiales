@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>2.14 - Monto de cheque para viaje</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 450px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 95%;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #0059b3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #003366;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Monto de cheque para viaje</h1>
+
+    <label for="dias">Número de días en Monterrey:</label>
+    <input type="number" id="dias" min="0" placeholder="Ej. 5" />
+
+    <label for="hotel">Costo diario de hotel ($):</label>
+    <input type="number" id="hotel" min="0" step="0.01" placeholder="Ej. 800" />
+
+    <label for="comida">Costo diario de comida ($):</label>
+    <input type="number" id="comida" min="0" step="0.01" placeholder="Ej. 300" />
+
+    <button onclick="calcularMonto()">Calcular monto del cheque</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularMonto() {
+      const dias = parseInt(document.getElementById('dias').value);
+      const hotel = parseFloat(document.getElementById('hotel').value);
+      const comida = parseFloat(document.getElementById('comida').value);
+
+      if (isNaN(dias) || dias < 0 || isNaN(hotel) || hotel < 0 || isNaN(comida) || comida < 0) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa valores válidos y no negativos.";
+        return;
+      }
+
+      const gastosHotel = dias * hotel;
+      const gastosComida = dias * comida;
+      const gastosOtros = dias * 100; // 100 pesos diarios para otros gastos
+
+      const montoTotal = gastosHotel + gastosComida + gastosOtros;
+
+      const resultadoTexto = 
+        `Desglose de gastos para ${dias} día(s):\n` +
+        `- Hotel: $${gastosHotel.toFixed(2)}\n` +
+        `- Comida: $${gastosComida.toFixed(2)}\n` +
+        `- Otros gastos: $${gastosOtros.toFixed(2)}\n\n` +
+        `Monto total del cheque: $${montoTotal.toFixed(2)}`;
+
+      document.getElementById('resultado').innerText = resultadoTexto;
+    }
+  </script>
+</body>
+</html>

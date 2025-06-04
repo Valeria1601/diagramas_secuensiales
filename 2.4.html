@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>2.4 - Cobro de Estacionamiento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      color: #003366;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #0059b3;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #0059b3;
+      border-radius: 8px;
+      width: 90%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #0059b3;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    #resultado {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cobro de Estacionamiento</h1>
+    <label for="horas">Horas utilizadas:</label><br>
+    <input type="number" id="horas" placeholder="Ej. 2.5"><br>
+    <label for="tarifa">Tarifa por hora (MXN):</label><br>
+    <input type="number" id="tarifa" placeholder="Ej. 20"><br>
+    <button onclick="calcularCobro()">Calcular cobro</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularCobro() {
+      const horas = parseFloat(document.getElementById('horas').value);
+      const tarifa = parseFloat(document.getElementById('tarifa').value);
+
+      if (isNaN(horas) || isNaN(tarifa) || horas <= 0 || tarifa <= 0) {
+        document.getElementById('resultado').innerText = "Por favor, ingresa valores válidos.";
+        return;
+      }
+
+      const horasCobro = Math.ceil(horas); // Se cobra como hora completa
+      const total = horasCobro * tarifa;
+
+      document.getElementById('resultado').innerText = `El cobro total es de $${total.toFixed(2)} MXN.`;
+    }
+  </script>
+</body>
+</html>
